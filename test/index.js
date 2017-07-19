@@ -1,6 +1,6 @@
 import assert from 'assert';
 import request from 'request';
-
+import should from 'should';
 let userID, userEmail;
 let url = 'http://localhost:1701/users'
 let options =   { json: {
@@ -25,6 +25,7 @@ describe('User Routes', () => {
 	describe('POST login user route - /users/login', () => {
 		it('should return success message', done => {
 			request.post(url + '/login', options, (err, res, body) => {
+				res.headers.should.have.property('set-cookie');
 	            assert.equal('successful login!', res.body.message);
 	  			done()
 		    });
