@@ -1,6 +1,7 @@
 import assert from 'assert';
 import request from 'request';
 import should from 'should';
+
 let userID, userEmail;
 let url = 'http://localhost:1701/users'
 let options =   { json: {
