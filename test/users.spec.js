@@ -6,8 +6,7 @@ let userID, userEmail;
 let url = 'http://localhost:1701/users'
 let options =   { json: {
 				    username: 'TestUser',
-				    email: 'test@example.com',
-				    password: 'TestPassword'
+				    email: 'test@example.com'
 				  } 
 				}
 describe('User Routes', () => {
