@@ -1,0 +1,19 @@
+version: '2'
+services:
+  web:
+    build: .
+    command: npm start
+    volumes: 
+      - .:/dist/
+      - /dist/node_modules
+    ports:
+      - "3000:1701"
+    depends_on:
+      - postgres
+    environment:
+      DATABASE_URL: postgres://lyfenapp@postgres/lyfen
+  postgres:
+    image: postgres:9.6.2-alpine
+    environment:
+      POSTGRES_USER: lyfenapp
+      POSTGRES_DB: lyfen
