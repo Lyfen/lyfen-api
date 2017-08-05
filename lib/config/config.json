@@ -12,9 +12,9 @@
     "dialect": "postgres"
   },
   "development": {
-    "username": "development",
+    "username": "lyfenapp",
     "password": "dev",
-    "database": "development",
+    "database": "lyfen",
     "host": "127.0.0.1",
     "port": 5432,
     "dialect": "postgres"
