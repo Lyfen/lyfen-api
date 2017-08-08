@@ -12,6 +12,7 @@ services:
       - postgres
     environment:
       DATABASE_URL: postgres://lyfenapp@postgres/lyfen
+      NODE_ENV: dev
   postgres:
     image: postgres:9.6.2-alpine
     environment:
