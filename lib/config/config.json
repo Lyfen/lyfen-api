@@ -11,10 +11,18 @@
     "port": 5432,
     "dialect": "postgres"
   },
-  "development": {
+  "dev": {
     "username": "lyfenapp",
     "password": "dev",
     "database": "lyfen",
+    "host": "127.0.0.1",
+    "port": 5432,
+    "dialect": "postgres"
+  },
+  "development": {
+    "username": "development",
+    "password": "dev",
+    "database": "development",
     "host": "127.0.0.1",
     "port": 5432,
     "dialect": "postgres"
