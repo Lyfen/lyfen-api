@@ -27,6 +27,7 @@
   },
   "scripts": {
     "start": "nodemon lib/index.js --exec babel-node",
+    "dev": "export NODE_ENV=development && nodemon lib/index.js --exec babel-node",
     "build": "babel lib -d dist",
     "serve": "node dist/index.js",
     "test": "mocha --compilers js:babel-register"
