@@ -55,6 +55,7 @@ describe('Graves Routes', () => {
 		request.delete('http://localhost:1701/users/' + grahamID);
 		request.delete('http://localhost:1701/users/' + jamesID);
 	})
+
 	it('should return Graham\'s accurate grave data', done => {
 		request.get('http://localhost:1701/graves/' + grahamID, (err, res, body) => {
 			assert.equal(JSON.parse(body).deathProbabilityPercentage, 0.0753);
@@ -63,6 +64,7 @@ describe('Graves Routes', () => {
 			done();
 		})
 	})
+	
 	it('should return James\' accurate grave data', done => {
 		request.get('http://localhost:1701/graves/' + jamesID, (err, res, body) => {
 			assert.equal(JSON.parse(body).deathProbabilityPercentage, 0.0864);
