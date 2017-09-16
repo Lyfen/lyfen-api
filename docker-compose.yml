@@ -11,8 +11,8 @@ services:
     depends_on:
       - postgres
     environment:
-      DATABASE_URL: postgres://lyfenapp@postgres/lyfen
-      NODE_ENV: dev
+      DB_URL: postgres://guamkgyi:p6JxRxTM4R9E0k_FR_zzK7Y-NPJzm00y@pellefant.db.elephantsql.com:5432/guamkgyi
+      NODE_ENV: production
   postgres:
     image: postgres:9.6.2-alpine
     environment:
