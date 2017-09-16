@@ -11,7 +11,7 @@
     "port": 5432,
     "dialect": "postgres"
   },
-  "dev": {
+  "development": {
     "username": "lyfenapp",
     "password": "dev",
     "database": "lyfen",
@@ -19,7 +19,7 @@
     "port": 5432,
     "dialect": "postgres"
   },
-  "development": {
+  "dev": {
     "username": "development",
     "password": "dev",
     "database": "development",
