@@ -20,10 +20,10 @@
     "dialect": "postgres"
   },
   "dev": {
-    "username": "development",
+    "username": "postgres",
     "password": "dev",
-    "database": "development",
-    "host": "127.0.0.1",
+    "database": "postgres",
+    "host": "postgres",
     "port": 5432,
     "dialect": "postgres"
   }
