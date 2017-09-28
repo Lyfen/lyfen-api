@@ -14,6 +14,7 @@
     "moment": "^2.18.1",
     "pg": "^6.4.0",
     "pg-hstore": "^2.3.2",
+    "request-promise": "^4.2.2",
     "sequelize": "^4.4.2"
   },
   "devDependencies": {
@@ -29,7 +30,8 @@
   },
   "scripts": {
     "start": "nodemon lib/index.js --exec babel-node",
-    "dev": "export NODE_ENV=development && nodemon lib/index.js --exec babel-node",
+    "dev": "nodemon lib/index.js --exec babel-node --inspect",
+    "docker": "docker-compose up",
     "build": "babel lib -d dist",
     "serve": "node dist/index.js",
     "test": "mocha --compilers js:babel-register"
