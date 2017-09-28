@@ -5,16 +5,16 @@ services:
     command: npm start
     volumes: 
       - .:/dist/
-      - /dist/node_modules
     ports:
-      - "3000:1701"
+      - "1701:1701"
     depends_on:
       - postgres
     environment:
       DB_URL: postgres://guamkgyi:p6JxRxTM4R9E0k_FR_zzK7Y-NPJzm00y@pellefant.db.elephantsql.com:5432/guamkgyi
-      NODE_ENV: production
+      DATABASE_URL: postgres://postgres@postgres/postgres
+      NODE_ENV: dev
   postgres:
     image: postgres:9.6.2-alpine
     environment:
-      POSTGRES_USER: lyfenapp
-      POSTGRES_DB: lyfen
+      POSTGRES_USER: postgres
+      POSTGRES_DB: postgres
