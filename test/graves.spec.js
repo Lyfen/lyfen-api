@@ -1,5 +1,6 @@
 import assert from 'assert';
 import request from 'request';
+import rp from 'request-promise';
 import should from 'should';
 
 const db = require("../lib/models");
@@ -8,52 +9,39 @@ describe('Graves Routes', () => {
 	let grahamID;
 	let jamesID;
 
-	before(() => {
+	before((done) => {
 		let date = new Date();
 
 		// insert Graham
-		let thirtyTwoYearsAgo  = date.setDate(date.getDate()-(365.25*32))  
+		let thirtyTwoYearsAgo  = date.setDate(date.getDate()-(365.25*32)) 
 		let graham = {
-			username: 'graham',
-			email: 'grahamtest@example.com',
-			dob: thirtyTwoYearsAgo
+			json: {
+				username: 'graham',
+				email: 'grahamtest@example.com',
+				dob: thirtyTwoYearsAgo,
+				height: 70,
+			  weight: 250,
+			  sex: 'male'
+			}
 		}
-		request.post('http://localhost:1701/users', graham, (err, res, body) => {
-				grahamID = body.id
-		});
 
-		// insert James
-		let thirtyFourYearsAgo = date.setDate(date.getDate()-(365.25*34))
-		let james = {
-			username: 'james',
-			email: 'jamestest@example.com',
-			dob: thirtyFourYearsAgo
-		}
-		request.post('http://localhost:1701/users', james, (err, res, body) => {
-				jamesID = body.id
+		request.post('http://localhost:1701/users', graham, (err, res, body) => {
+			grahamID = body.id
+			done();
 		});
 	})
 	
 	after(() => {
 		request.delete('http://localhost:1701/users/' + grahamID);
-		request.delete('http://localhost:1701/users/' + jamesID);
 	})
 
-	it('should return Graham\'s accurate grave data', done => {
+	it('should return 32 year old\'s accurate grave data', done => {
 		request.get('http://localhost:1701/graves/' + grahamID, (err, res, body) => {
-			assert.equal(JSON.parse(body).deathProbabilityPercentage, 0.0753);
-			assert.equal(JSON.parse(body).cohortDeathPercentage, 1.495);
-			assert.equal(JSON.parse(body).lifeSecondsRemaining, 1581982488);
+			let grave = JSON.parse(body)[0]
+			assert.equal(grave.deathProbabilityPercentage, 0.00156);
+			assert.equal(grave.cohortDeathPercentage, 2.77);
+			assert.equal(grave.lifeSecondsRemaining, 16800.95);
+			done();
 		})
-		done();
-	})
-	
-	it('should return James\' accurate grave data', done => {
-		request.get('http://localhost:1701/graves/' + jamesID, (err, res, body) => {
-			assert.equal(JSON.parse(body).deathProbabilityPercentage, 0.0864);
-			assert.equal(JSON.parse(body).cohortDeathPercentage, 1.649);
-			assert.equal(JSON.parse(body).lifeSecondsRemaining, 1521391896);
-		})
-		done();
 	})
 })
