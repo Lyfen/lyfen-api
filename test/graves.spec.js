@@ -1,6 +1,5 @@
 import assert from 'assert';
 import request from 'request';
-import rp from 'request-promise';
 import should from 'should';
 
 const db = require("../lib/models");
@@ -16,8 +15,9 @@ describe('Graves Routes', () => {
 		let thirtyTwoYearsAgo  = date.setDate(date.getDate()-(365.25*32)) 
 		let graham = {
 			json: {
-				username: 'graham',
-				email: 'grahamtest@example.com',
+				username: 'testing',
+				email: 'testing@example.com',
+				password: 'password',
 				dob: thirtyTwoYearsAgo,
 				height: 70,
 			  weight: 250,
@@ -31,8 +31,9 @@ describe('Graves Routes', () => {
 		});
 	})
 	
-	after(() => {
+	after((done) => {
 		request.delete('http://localhost:1701/users/' + grahamID);
+		done();
 	})
 
 	it('should return 32 year old\'s accurate grave data', done => {

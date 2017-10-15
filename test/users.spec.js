@@ -2,11 +2,12 @@ import assert from 'assert';
 import request from 'request';
 import should from 'should';
 
-let userID, userEmail;
+let userID, userEmail, userPassword;
 let url = 'http://localhost:1701/users'
 let options =   { json: {
 				    username: 'TestUser',
-				    email: 'test@example.com'
+						email: 'test@example.com',
+						password: 'testingpw'
 				  } 
 				}
 describe('User Routes', () => {
@@ -14,11 +15,12 @@ describe('User Routes', () => {
 	describe('POST new user route - /users', () => {
 		it('should create new user', done => {
 			request.post(url, options, (err, res, body) => {
-	            userID    = body.id
-	            userEmail = body.email
-	            assert.equal(200, res.statusCode);
-	  			done()
-		    });
+				userID    = body.id
+				userEmail = body.email
+				userPassword = body.password
+				assert.equal(200, res.statusCode);
+				done()
+			});
 		});
 	});
 
@@ -26,9 +28,9 @@ describe('User Routes', () => {
 		it('should return success message', done => {
 			request.post(url + '/login', options, (err, res, body) => {
 				res.headers.should.have.property('set-cookie');
-	            assert.equal('successful login!', res.body.message);
-	  			done()
-		    });
+				assert.equal('successful login!', res.body.message);
+				done()
+			});
 		})
 	})
 
@@ -62,8 +64,8 @@ describe('User Routes', () => {
 	describe('DELETE individual user - /users/:userid', () => {
 		it('should successfully delete Test User', done => {
 			request.delete(url + '/' + userID, (err, res, body) => {
-		        assert.equal(1, res.body);
-		        done()
+				assert.equal(1, res.body);
+				done()
 			});
 		})
 	})
